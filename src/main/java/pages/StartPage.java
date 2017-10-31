@@ -13,12 +13,9 @@ public class StartPage extends BasePage {
     @FindBy(xpath = "(//ul[@class='alt-menu-list']/li/a[text()='Приобретение готового жилья'])[1]")
     WebElement readyHouse;
 
-    @FindBy(xpath = "//div[@class='sbrf-rich-outer']//span[text()='Рассчитать']")
+    @FindBy(xpath = "(.//div[@class='sbrf-rich-outer']//a/span)[1]/..")
     WebElement calculate;
 
-    public StartPage(){
-        PageFactory.initElements(driver, this);
-    }
 
     public WebElement getReadyHouse() {
         return readyHouse;

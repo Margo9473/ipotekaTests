@@ -17,11 +17,10 @@ public class BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public boolean isElementPresent(By by) {
+    public boolean isElementPresent(WebElement webElement) {
         try {
             driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-            driver.findElement(by);
-            return true;
+            return webElement.isDisplayed();
         } catch (NoSuchElementException e) {
             return false;
         }
@@ -31,20 +30,50 @@ public class BasePage {
     }
 
     public void fillField(WebElement element, String value)  {
-        element.clear();
-        element.sendKeys(value);
+        try{
+            waitVisibility(element);
+            element.clear();
+            element.sendKeys(value);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+
+    }
+
+    public void clearFieldAndSendCase(WebElement element, String value)  {
+        try{
+            waitVisibility(element);
+            do{
+                element.sendKeys(Keys.BACK_SPACE);
+            } while (!element.getAttribute("value").equals(" \u20BD"));
+            element.sendKeys(value, Keys.UP);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+
+    }
+
+    public void clearFieldYearAndSend(WebElement element, String value)  {
+        try{
+            waitVisibility(element);
+            do{
+                element.sendKeys(Keys.BACK_SPACE);
+            } while (!element.getAttribute("value").equals(" лет"));
+            element.sendKeys(value, Keys.UP);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+
+    }
+
+
+    public void waitVisibility(WebElement element){
+        new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOf(element));
     }
 
     public void click(WebElement element) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(false);", element);
-        Wait<WebDriver> wait = new WebDriverWait(driver, 15);
-        wait.until(ExpectedConditions.elementToBeClickable(element));
+        new WebDriverWait(driver,20).until(ExpectedConditions.elementToBeClickable(element));
         element.click();
     }
-
-    public void selectFields(WebElement element, String value)  {
-        new Select(element).selectByVisibleText(value);
-    }
-
-
 }
