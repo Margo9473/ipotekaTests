@@ -1,12 +1,8 @@
 package steps;
-
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.openqa.selenium.By;
 import pages.CalculatePage;
 import pages.StartPage;
-
-import static org.junit.Assert.assertTrue;
 import static steps.BaseSteps.driver;
 
 public class ScenarioSteps {
@@ -19,7 +15,6 @@ public class ScenarioSteps {
     @When("^пользователь нажимает на кнопку Взять кредит")
     public void checkClickButtonTake(){
         startSteps.takeCreditButton();
-        assertTrue("Кнопка нажата",startPage.isElementPresent(startPage.getReadyHouse()));
     }
 
     @When("^пользователь нажимает на кнопку Приобретение готового жилья")
@@ -67,9 +62,19 @@ public class ScenarioSteps {
         calculateSteps.youngFamilyDiscountSteps();
     }
 
-    @Then("Я получу кредит на 3000000")
+    @Then("^Я получу кредит на 3000000$")
     public void creditConditions(){
-        assertTrue(calculateSteps.creditConditionsSteps());
+        calculateSteps.creditConditionsSteps();
     }
+
+    @Then("^Ежемесячный платеж составит 37841$")
+    public void monthlyPayment(){
+        calculateSteps.monthlyPaymentSteps();
+    }
+    @Then("^Процентная ставка 8.9$")
+    public void rade(){
+        calculateSteps.radeSteps();
+    }
+
 
 }

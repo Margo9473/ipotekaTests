@@ -1,5 +1,4 @@
 package steps;
-
 import org.openqa.selenium.By;
 import pages.CalculatePage;
 import ru.yandex.qatools.allure.annotations.Step;
@@ -37,28 +36,35 @@ public class CalculateSteps {
 
 
     @Step("Я получаю зп на карту сбера")
-    public void paidToCardSteps(){
-        if(!calculatePage.getPaidToCard().isSelected()){
+    public void paidToCardSteps() {
+        if (!calculatePage.getPaidToCard().isSelected()) {
             calculatePage.click(calculatePage.getPaidToCard().findElement(By.xpath("./../div[2]")));
         }
 
     }
 
     @Step("^Я молод")
-    public boolean youngFamilyDiscountSteps() {
+    public void youngFamilyDiscountSteps() {
         if (!calculatePage.getYoungFamilyDiscount().isSelected()) {
             calculatePage.click(calculatePage.getYoungFamilyDiscount().findElement(By.xpath("./../div[2]")));
-            return true;
         }
-        return false;
     }
 
-    @Step("условия кредитования")
-    public boolean creditConditionsSteps(){
-        if (calculatePage.getAmountOfCredit().getText().equals("3000000 \u20BD")){
-            return true;
+    @Step("Сумма кредита")
+    public void creditConditionsSteps() {
+        if (calculatePage.getAmountOfCredit().getText().equals("3000000 \u20BD")) {
         }
-            return false;
     }
 
+    @Step("Сумма выплаты в месяц")
+    public void monthlyPaymentSteps() {
+        if (calculatePage.getAmountOfCredit().getText().equals("37841 \u0025")) {
+        }
+    }
+
+    @Step("Процентная ставка")
+    public void radeSteps() {
+        if (calculatePage.getRate().getText().equals("8.9 ")) {
+        }
+    }
 }

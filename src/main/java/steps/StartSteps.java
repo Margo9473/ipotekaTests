@@ -13,11 +13,12 @@ public class StartSteps {
     }
 
     @Step("Нажатие на кнопку")
-    public void clickReadyHouseSteps(){
+    public void clickReadyHouseSteps() {
         startPage.click(startPage.getReadyHouse());
     }
+
     @Step("Нажатие на кнопку калькулятор")
-    public void clickCalculateSteps(){
+    public void clickCalculateSteps() {
         startPage.click(startPage.getCalculate());
     }
 
