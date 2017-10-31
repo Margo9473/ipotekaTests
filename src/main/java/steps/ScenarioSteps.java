@@ -2,6 +2,7 @@ package steps;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.openqa.selenium.By;
 import pages.CalculatePage;
 import pages.StartPage;
 
@@ -56,28 +57,19 @@ public class ScenarioSteps {
         calculateSteps.fieldYearSteps();
     }
 
-    @When("^Я молод")
-    public void youngFamilyDiscounts(){
-        calculateSteps.youngFamilyDiscountSteps();
-    }
-
-    @When("^Я получаю зп на карту сбера и Молодая семья")
-    public void paidToCard(){
+    @When("^Я получаю зп на карту")
+    public void paidToCards(){
         calculateSteps.paidToCardSteps();
     }
 
+    @When("^Я молодая семья")
+    public void youngFamilyDiscount(){
+        calculateSteps.youngFamilyDiscountSteps();
+    }
 
     @Then("Я получу кредит на 3000000")
     public void creditConditions(){
         assertTrue(calculateSteps.creditConditionsSteps());
     }
-
-  /*  @When("^Я молодая семья")
-    public void youngFamilyDiscount(){
-        calculateSteps.youngFamilyDiscountSteps();
-
-
-    }
-*/
 
 }

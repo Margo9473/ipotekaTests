@@ -10,7 +10,7 @@ public class StartPage extends BasePage {
     @FindBy(xpath = "(//SPAN[@class='multiline'])[1]")
     WebElement takeCreditButton;
 
-    @FindBy(xpath = "(//ul[@class='alt-menu-list']/li/a[text()='Приобретение готового жилья'])[1]")
+    @FindBy(xpath = "(//A[@class='kit-link kit-link_color_black alt-menu-list__link alt-menu-list__link_level_2'])[6]")
     WebElement readyHouse;
 
     @FindBy(xpath = "(.//div[@class='sbrf-rich-outer']//a/span)[1]/..")

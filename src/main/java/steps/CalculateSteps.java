@@ -9,30 +9,32 @@ public class CalculateSteps {
     CalculatePage calculatePage = new CalculatePage();
 
     @Step("Нажатие на Купить готовое жилье")
-    public void clickCheckBoxButtonSteps(){
+    public void clickCheckBoxButtonSteps() {
         calculatePage.click(calculatePage.getCheckBoxButton());
         calculatePage.click(calculatePage.getToBuyReadyHoume());
 
     }
+
     @Step("Выбор стоимости жилья")
-    public void fillPriceHouseSteps(){
+    public void fillPriceHouseSteps() {
         calculatePage.click(calculatePage.getPriceHouse());
-        calculatePage.clearFieldAndSendCase(calculatePage.getPriceHouse(),"6000000");
+        calculatePage.clearFieldAndSendCase(calculatePage.getPriceHouse(), "6000000");
 
 
     }
 
     @Step("Сколько у меня есть")
-    public void fillMoneySteps(){
+    public void fillMoneySteps() {
         calculatePage.click(calculatePage.getFillMoney());
         calculatePage.clearFieldAndSendCase(calculatePage.getFillMoney(), "3000000");
     }
 
     @Step("Сколько лет")
-    public void fieldYearSteps(){
+    public void fieldYearSteps() {
         calculatePage.click(calculatePage.getFieldYear());
-        calculatePage.clearFieldYearAndSend(calculatePage.getFieldYear(),"10");
+        calculatePage.clearFieldYearAndSend(calculatePage.getFieldYear(), "10");
     }
+
 
     @Step("Я получаю зп на карту сбера")
     public void paidToCardSteps(){
@@ -41,20 +43,16 @@ public class CalculateSteps {
         }
 
     }
+
     @Step("^Я молод")
-    public void youngFamilyDiscountSteps(){
-        if(!calculatePage.getYoungFamilyDiscount().isSelected()){
+    public boolean youngFamilyDiscountSteps() {
+        if (!calculatePage.getYoungFamilyDiscount().isSelected()) {
             calculatePage.click(calculatePage.getYoungFamilyDiscount().findElement(By.xpath("./../div[2]")));
+            return true;
         }
+        return false;
     }
 
-   /* @Step("Я молодая семья")
-    public void youngFamilyDiscountSteps(){
-        if(!calculatePage.getYoungFamilyDiscount().isSelected()){
-            calculatePage.click(calculatePage.getYoungFamilyDiscount().findElement(By.xpath("./../div[2]")));
-        }
-    }
-*/
     @Step("условия кредитования")
     public boolean creditConditionsSteps(){
         if (calculatePage.getAmountOfCredit().getText().equals("3000000 \u20BD")){
@@ -62,4 +60,5 @@ public class CalculateSteps {
         }
             return false;
     }
+
 }
